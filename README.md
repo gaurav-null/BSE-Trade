@@ -36,14 +36,6 @@ Try breaking it: close the tab and reopen it mid-pull (instant load, correct sta
 npm start             # builds the React app, then serves everything from the API on http://localhost:4000
 ```
 
-### Docker
-
-```bash
-docker build -t bse-trades-dashboard .
-docker run --rm -p 4000:4000 -v bse-trades-data:/app/data bse-trades-dashboard
-```
-
-Open **http://localhost:4000**. The SQLite database is stored in the `bse-trades-data` Docker volume.
 
 ### Tests
 
