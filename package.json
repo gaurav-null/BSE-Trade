@@ -1,0 +1,32 @@
+{
+  "name": "bse-trades-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Live trades dashboard fed by a slow (15 min) BSE pull, designed around a 30 s connection limit.",
+  "workspaces": [
+    "shared",
+    "mock-bse",
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "concurrently -n bse,api,web -c yellow,cyan,magenta \"npm:dev:bse\" \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev:demo": "cross-env PULL_DELAY_MS=45000 npm run dev",
+    "dev:bse": "npm run dev -w mock-bse",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build -w frontend",
+    "start": "npm run build && concurrently -n bse,api -c yellow,cyan \"npm:start:bse\" \"npm:start:backend\"",
+    "start:bse": "npm run start -w mock-bse",
+    "start:backend": "npm run start -w backend",
+    "test:e2e": "node scripts/e2e.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7",
+    "cross-env": "^10.1.0"
+  }
+}

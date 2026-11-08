@@ -1,0 +1,81 @@
+/* Layout and component styles for the dashboard. Colour tokens and the reset live in index.css. */
+
+.app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: grid;
+  gap: 16px;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.error { color: var(--error); }
+.mono { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.grow { margin-left: auto; }
+
+/* Header */
+.topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;
+  background: var(--panel); border: 1px solid var(--border);
+}
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.pill-live i { background: var(--accent); box-shadow: 0 0 0 3px var(--fresh); }
+.pill-reconnecting i { background: var(--warn); }
+
+/* Panels */
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+.panel.empty, td.empty { text-align: center; color: var(--muted); padding: 40px 18px; }
+
+/* Pull status */
+.status { display: flex; gap: 20px; align-items: flex-start; justify-content: space-between; }
+.status-main { display: grid; gap: 10px; flex: 1; min-width: 0; }
+.status-head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+
+.stepper { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px; color: var(--muted); }
+.stepper li { display: flex; align-items: center; gap: 8px; }
+.stepper .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border); }
+.stepper .done { color: var(--text); }
+.stepper .done .dot { background: var(--accent); border-color: var(--accent); }
+.stepper .current { color: var(--text); font-weight: 600; }
+.stepper .current .dot { border-color: var(--accent); box-shadow: 0 0 0 3px var(--fresh); }
+
+.bar { height: 6px; background: var(--panel-2); border-radius: 99px; overflow: hidden; }
+.bar > div { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.3s; }
+.bar.indeterminate > div { width: 35%; animation: slide 1.6s ease-in-out infinite; }
+@keyframes slide { from { margin-left: -35%; } to { margin-left: 100%; } }
+
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; white-space: nowrap; }
+button.link { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat { display: grid; gap: 2px; padding: 12px 16px; }
+.stat strong { font-size: 22px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+
+/* Trades table */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+input[type='search'] { min-width: 260px; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { position: sticky; top: 0; background: var(--panel-2); color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; user-select: none; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: var(--panel-2); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.symbol { font-weight: 600; letter-spacing: 0.02em; }
+
+tr.fresh { animation: fresh 5s ease-out; }
+@keyframes fresh { from { background: var(--fresh); } to { background: transparent; } }
+
+.pager { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 12px; }
+
+@media (max-width: 640px) {
+  .status { flex-direction: column; }
+  input[type='search'] { min-width: 0; flex: 1; }
+}
