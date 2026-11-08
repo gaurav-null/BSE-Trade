@@ -6,7 +6,7 @@ A live trades dashboard fed by a slow BSE pull (up to **15 minutes**) behind a n
 - **Node.js backend** — starts pulls, receives the BSE webhook, ingests into SQLite idempotently, pushes updates over Server-Sent Events.
 - **React dashboard** — opens instantly with the trades already pulled, even mid-pull; new trades appear by themselves when a pull finishes. No page refresh, no polling loop, no cron/scheduler.
 
-Design write-up with diagrams: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** · Video outline: [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md)
+Design write-up with diagrams: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**
 
 ## Quick start
 
